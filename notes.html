@@ -1,0 +1,1373 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cloud Computing — Complete Quiz Notes</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Sora:wght@300;400;500;600;700;800&display=swap');
+
+  :root {
+    --bg: #0a0e1a;
+    --bg2: #111827;
+    --bg3: #1a2234;
+    --accent: #00d4ff;
+    --accent2: #7c3aed;
+    --accent3: #f59e0b;
+    --accent4: #10b981;
+    --accent5: #ef4444;
+    --text: #e2e8f0;
+    --muted: #94a3b8;
+    --border: rgba(0,212,255,0.15);
+    --u1: #00d4ff;
+    --u2: #a78bfa;
+    --u3: #34d399;
+    --u4: #fb923c;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Sora', sans-serif;
+    font-size: 14px;
+    line-height: 1.7;
+  }
+
+  /* HEADER */
+  .hero {
+    background: linear-gradient(135deg, #0a0e1a 0%, #1a0a2e 50%, #0a1a2e 100%);
+    padding: 48px 40px 36px;
+    border-bottom: 1px solid var(--border);
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: -80px; right: -80px;
+    width: 300px; height: 300px;
+    background: radial-gradient(circle, rgba(0,212,255,0.08) 0%, transparent 70%);
+    border-radius: 50%;
+  }
+  .hero::after {
+    content: '';
+    position: absolute;
+    bottom: -60px; left: 30%;
+    width: 200px; height: 200px;
+    background: radial-gradient(circle, rgba(124,58,237,0.07) 0%, transparent 70%);
+    border-radius: 50%;
+  }
+  .hero-tag {
+    font-family: 'Space Mono', monospace;
+    font-size: 11px;
+    color: var(--accent);
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    margin-bottom: 12px;
+  }
+  .hero h1 {
+    font-size: 36px;
+    font-weight: 800;
+    line-height: 1.1;
+    background: linear-gradient(90deg, #ffffff, #00d4ff, #a78bfa);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 12px;
+  }
+  .hero p {
+    color: var(--muted);
+    font-size: 13px;
+    max-width: 600px;
+  }
+
+  /* UNIT NAV */
+  .unit-nav {
+    display: flex;
+    gap: 8px;
+    padding: 20px 40px;
+    background: var(--bg2);
+    border-bottom: 1px solid var(--border);
+    flex-wrap: wrap;
+  }
+  .unit-nav a {
+    padding: 6px 16px;
+    border-radius: 20px;
+    text-decoration: none;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    transition: all 0.2s;
+  }
+  .u1-nav { background: rgba(0,212,255,0.1); color: var(--u1); border: 1px solid rgba(0,212,255,0.3); }
+  .u2-nav { background: rgba(167,139,250,0.1); color: var(--u2); border: 1px solid rgba(167,139,250,0.3); }
+  .u3-nav { background: rgba(52,211,153,0.1); color: var(--u3); border: 1px solid rgba(52,211,153,0.3); }
+  .u4-nav { background: rgba(251,146,60,0.1); color: var(--u4); border: 1px solid rgba(251,146,60,0.3); }
+  .unit-nav a:hover { transform: translateY(-1px); filter: brightness(1.2); }
+
+  /* LAYOUT */
+  .container { max-width: 1200px; margin: 0 auto; padding: 0 40px 60px; }
+
+  /* UNIT SECTION */
+  .unit-section {
+    margin-top: 48px;
+  }
+  .unit-header {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 28px;
+    padding-bottom: 16px;
+    border-bottom: 1px solid var(--border);
+  }
+  .unit-badge {
+    font-family: 'Space Mono', monospace;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    padding: 4px 12px;
+    border-radius: 4px;
+    white-space: nowrap;
+  }
+  .u1 .unit-badge { background: rgba(0,212,255,0.15); color: var(--u1); border: 1px solid rgba(0,212,255,0.3); }
+  .u2 .unit-badge { background: rgba(167,139,250,0.15); color: var(--u2); border: 1px solid rgba(167,139,250,0.3); }
+  .u3 .unit-badge { background: rgba(52,211,153,0.15); color: var(--u3); border: 1px solid rgba(52,211,153,0.3); }
+  .u4 .unit-badge { background: rgba(251,146,60,0.15); color: var(--u4); border: 1px solid rgba(251,146,60,0.3); }
+
+  .unit-title {
+    font-size: 22px;
+    font-weight: 700;
+    color: #fff;
+  }
+
+  /* TOPIC CARDS */
+  .topics-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+    gap: 16px;
+  }
+  .topics-grid.wide { grid-template-columns: 1fr; }
+  .topics-grid.two-col { grid-template-columns: repeat(2, 1fr); }
+
+  .card {
+    background: var(--bg2);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 20px 22px;
+    position: relative;
+    overflow: hidden;
+    transition: border-color 0.2s;
+  }
+  .card:hover { border-color: rgba(0,212,255,0.3); }
+
+  .u1 .card { border-left: 3px solid var(--u1); }
+  .u2 .card { border-left: 3px solid var(--u2); }
+  .u3 .card { border-left: 3px solid var(--u3); }
+  .u4 .card { border-left: 3px solid var(--u4); }
+
+  .card-title {
+    font-size: 13px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 14px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .u1 .card-title { color: var(--u1); }
+  .u2 .card-title { color: var(--u2); }
+  .u3 .card-title { color: var(--u3); }
+  .u4 .card-title { color: var(--u4); }
+
+  /* KEY POINTS */
+  .kp { display: flex; flex-direction: column; gap: 6px; }
+  .kp li {
+    list-style: none;
+    padding: 6px 10px 6px 28px;
+    background: rgba(255,255,255,0.03);
+    border-radius: 6px;
+    font-size: 13px;
+    position: relative;
+    color: var(--text);
+  }
+  .kp li::before {
+    content: '▸';
+    position: absolute;
+    left: 10px;
+    color: var(--muted);
+    font-size: 10px;
+    top: 8px;
+  }
+  .kp li strong { color: #fff; }
+
+  /* DEFINITION BOX */
+  .def-box {
+    background: rgba(0,0,0,0.3);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 8px;
+    padding: 14px 16px;
+    font-size: 13px;
+    color: #c8d6e5;
+    margin-bottom: 12px;
+    line-height: 1.6;
+  }
+  .def-box strong { color: var(--accent3); }
+
+  /* COMPARISON TABLE */
+  .comp-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 12px;
+    margin-top: 8px;
+  }
+  .comp-table th {
+    background: rgba(255,255,255,0.05);
+    padding: 8px 10px;
+    text-align: left;
+    font-weight: 600;
+    color: var(--muted);
+    border-bottom: 1px solid var(--border);
+  }
+  .comp-table td {
+    padding: 7px 10px;
+    border-bottom: 1px solid rgba(255,255,255,0.04);
+    vertical-align: top;
+    color: var(--text);
+  }
+  .comp-table tr:last-child td { border-bottom: none; }
+  .comp-table tr:hover td { background: rgba(255,255,255,0.02); }
+
+  /* HIGHLIGHT PILL */
+  .pill {
+    display: inline-block;
+    padding: 2px 8px;
+    border-radius: 10px;
+    font-size: 11px;
+    font-weight: 600;
+  }
+  .pill-blue { background: rgba(0,212,255,0.15); color: var(--u1); }
+  .pill-purple { background: rgba(167,139,250,0.15); color: var(--u2); }
+  .pill-green { background: rgba(52,211,153,0.15); color: var(--u3); }
+  .pill-orange { background: rgba(251,146,60,0.15); color: var(--u4); }
+  .pill-red { background: rgba(239,68,68,0.15); color: #f87171; }
+  .pill-yellow { background: rgba(245,158,11,0.15); color: var(--accent3); }
+
+  /* NIST / NUMBERED LIST */
+  .num-list { counter-reset: nl; display: flex; flex-direction: column; gap: 6px; }
+  .num-list li {
+    list-style: none;
+    counter-increment: nl;
+    padding: 7px 10px 7px 32px;
+    background: rgba(255,255,255,0.03);
+    border-radius: 6px;
+    font-size: 13px;
+    position: relative;
+  }
+  .num-list li::before {
+    content: counter(nl);
+    position: absolute;
+    left: 10px;
+    width: 16px;
+    height: 16px;
+    border-radius: 4px;
+    font-size: 10px;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    top: 9px;
+    font-family: 'Space Mono', monospace;
+  }
+  .u1 .num-list li::before { background: rgba(0,212,255,0.2); color: var(--u1); }
+  .u2 .num-list li::before { background: rgba(167,139,250,0.2); color: var(--u2); }
+  .u3 .num-list li::before { background: rgba(52,211,153,0.2); color: var(--u3); }
+  .u4 .num-list li::before { background: rgba(251,146,60,0.2); color: var(--u4); }
+
+  /* SPI BLOCK */
+  .spi-block {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+    margin-top: 8px;
+  }
+  .spi-item {
+    background: rgba(0,0,0,0.3);
+    border-radius: 8px;
+    padding: 14px 14px;
+    border: 1px solid rgba(255,255,255,0.06);
+    text-align: center;
+  }
+  .spi-letter {
+    font-family: 'Space Mono', monospace;
+    font-size: 28px;
+    font-weight: 700;
+    margin-bottom: 4px;
+  }
+  .spi-name { font-size: 10px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; margin-bottom: 8px; color: var(--muted); }
+  .spi-examples { font-size: 11px; color: var(--muted); }
+
+  /* DIVIDER */
+  .section-divider {
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--border), transparent);
+    margin: 40px 0 0;
+  }
+
+  /* CALLOUT */
+  .callout {
+    background: rgba(245,158,11,0.07);
+    border: 1px solid rgba(245,158,11,0.2);
+    border-radius: 8px;
+    padding: 12px 16px;
+    font-size: 12.5px;
+    color: #fcd34d;
+    margin-top: 12px;
+  }
+  .callout strong { color: var(--accent3); }
+
+  /* SCROLLBAR */
+  ::-webkit-scrollbar { width: 6px; }
+  ::-webkit-scrollbar-track { background: var(--bg); }
+  ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
+
+  /* EXAMPLE BOX */
+  .example-box {
+    background: rgba(16,185,129,0.05);
+    border: 1px solid rgba(16,185,129,0.15);
+    border-radius: 6px;
+    padding: 10px 12px;
+    font-size: 12px;
+    color: #6ee7b7;
+    margin-top: 8px;
+  }
+  .example-box strong { color: var(--accent4); }
+
+  .full-width { grid-column: 1 / -1; }
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <div class="hero-tag">📚 Complete Study Notes</div>
+  <h1>Cloud Computing<br>All 4 Units</h1>
+  <p>Comprehensive notes from slides + PDF. Every concept covered. Optimized for quick reading before a difficult quiz.</p>
+</div>
+
+<div class="unit-nav">
+  <a href="#u1" class="u1-nav">Unit 1 — Fundamentals</a>
+  <a href="#u2" class="u2-nav">Unit 2 — Virtualization</a>
+  <a href="#u3" class="u3-nav">Unit 3 — Cloud Security</a>
+  <a href="#u4" class="u4-nav">Unit 4 — Providers & Case Studies</a>
+</div>
+
+<div class="container">
+
+<!-- ===================== UNIT 1 ===================== -->
+<div class="unit-section u1" id="u1">
+  <div class="unit-header">
+    <span class="unit-badge">UNIT 1 — 10 HRS</span>
+    <span class="unit-title">Cloud Computing Fundamentals</span>
+  </div>
+
+  <div class="topics-grid">
+
+    <!-- DEFINITION -->
+    <div class="card">
+      <div class="card-title">☁ What is Cloud Computing</div>
+      <div class="def-box">Delivery of computing services (storage, servers, software, networking) over the internet — <strong>"the cloud"</strong>. Provides on-demand access without managing physical infrastructure.</div>
+      <ul class="kp">
+        <li><strong>User-centric:</strong> Data belongs to you & shareable</li>
+        <li><strong>Task-centric:</strong> Focus is on what needs to be done, not the app</li>
+        <li><strong>Powerful:</strong> Thousands of computers working together</li>
+        <li><strong>Intelligent:</strong> Data mining & analysis of pooled data</li>
+        <li><strong>Programmable:</strong> Automated replication, redistribution, self-healing</li>
+      </ul>
+    </div>
+
+    <!-- HISTORY -->
+    <div class="card">
+      <div class="card-title">📅 History of Cloud Computing</div>
+      <ul class="kp">
+        <li><strong>1960s:</strong> J.C.R. Licklider coined the concept via ARPANet research</li>
+        <li><strong>1961:</strong> John McCarthy — computing can be sold like a utility (water/electricity)</li>
+        <li><strong>1999:</strong> Salesforce.com — first app delivery over the internet</li>
+        <li><strong>2002:</strong> Amazon Web Services launched (storage, compute, human intelligence)</li>
+        <li><strong>2006:</strong> Amazon EC2 — first true commercial cloud for everyone</li>
+        <li><strong>2008:</strong> Google Beta Search Engine; Microsoft Azure announced</li>
+        <li><strong>2009:</strong> Google Apps for enterprise cloud</li>
+        <li><strong>2012:</strong> Google Compute Engine released to public</li>
+        <li><strong>2013:</strong> Oracle Cloud launched (IaaS, PaaS, SaaS)</li>
+      </ul>
+    </div>
+
+    <!-- EVOLUTION / COMPUTING PARADIGMS -->
+    <div class="card">
+      <div class="card-title">🔄 Evolution of Computing (5 Stages)</div>
+      <ul class="kp">
+        <li><strong>Mainframe Computing:</strong> Powerful central computer + dummy terminals. Used in banking, healthcare, govt, airlines</li>
+        <li><strong>Personal Computing:</strong> Individual desktop/laptop for everyday tasks</li>
+        <li><strong>Network Computing:</strong> LANs, WANs, internet — data sharing + remote access</li>
+        <li><strong>Grid Computing:</strong> Distributed cross-org resources, large-scale tasks (scientific)</li>
+        <li><strong>Cloud Computing:</strong> On-demand, pooled resources over the internet</li>
+      </ul>
+    </div>
+
+    <!-- GRID COMPUTING -->
+    <div class="card">
+      <div class="card-title">🔲 Grid Computing</div>
+      <div class="def-box">Combines computing resources from multiple locations for a common goal. Subset of distributed computing — like a virtual supercomputer across the internet.</div>
+      <p style="font-size:12px;color:var(--muted);margin-bottom:8px;font-weight:600;">3 Node Types:</p>
+      <ul class="kp">
+        <li><strong>Control Node:</strong> Server(s) that administrate the network & resource pool</li>
+        <li><strong>Provider:</strong> Contributes unused resources to the pool</li>
+        <li><strong>User:</strong> Consumes resources from the pool</li>
+      </ul>
+      <p style="font-size:12px;color:var(--muted);margin:8px 0 4px;font-weight:600;">Use Cases:</p>
+      <p style="font-size:12px;color:#94a3b8;">Genomic research, drug discovery, cancer research, weather forecasting, risk analysis, CAD, animation/VFX, collaborative projects</p>
+    </div>
+
+    <!-- DISTRIBUTED COMPUTING -->
+    <div class="card">
+      <div class="card-title">🌐 Distributed Computing</div>
+      <div class="def-box">Network of independent computers (nodes) working together. Each node is self-sufficient but communicates via messaging.</div>
+      <p style="font-size:12px;color:var(--muted);margin-bottom:6px;font-weight:600;">Advantages:</p>
+      <ul class="kp">
+        <li><strong>Scalability:</strong> Add nodes as needed without major upgrades</li>
+        <li><strong>Availability:</strong> Node failure doesn't stop the system; redundancy built in</li>
+        <li><strong>Efficiency:</strong> Parallel processing, optimal resource utilization</li>
+        <li><strong>Transparency:</strong> Appears as single entity to user; hides complexity</li>
+      </ul>
+      <p style="font-size:12px;color:var(--muted);margin:8px 0 4px;font-weight:600;">Architectures:</p>
+      <ul class="kp">
+        <li><strong>Client-Server:</strong> Clients request, servers provide</li>
+        <li><strong>3-Tier:</strong> Presentation → Application → Data layers</li>
+        <li><strong>N-Tier:</strong> Extension of 3-tier with n layers for modularity</li>
+        <li><strong>P2P:</strong> All nodes equal; each is both client & server (blockchain, torrents)</li>
+      </ul>
+    </div>
+
+    <!-- CLUSTER vs GRID vs UTILITY -->
+    <div class="card">
+      <div class="card-title">⚡ Cluster vs Grid vs Utility Computing</div>
+      <table class="comp-table">
+        <tr><th>Aspect</th><th>Cluster</th><th>Grid</th><th>Utility</th></tr>
+        <tr><td>Nodes</td><td>Homogeneous</td><td>Hetero or Homo</td><td>Any</td></tr>
+        <tr><td>Location</td><td>Close together</td><td>Geographically far</td><td>Any</td></tr>
+        <tr><td>Connection</td><td>High-speed LAN</td><td>Internet/low-speed</td><td>Internet</td></tr>
+        <tr><td>Topology</td><td>Centralized</td><td>Distributed</td><td>Centralized</td></tr>
+        <tr><td>Scheduling</td><td>Central server</td><td>Each node independent</td><td>Provider-managed</td></tr>
+        <tr><td>Focus</td><td>App servers, DBs</td><td>Simulations, modeling</td><td>Pay-per-use resources</td></tr>
+      </table>
+    </div>
+
+    <!-- FOG COMPUTING -->
+    <div class="card">
+      <div class="card-title">🌫 Fog Computing (Edge Computing)</div>
+      <div class="def-box">Introduced by <strong>Cisco</strong>. Extends cloud computing to the edge of the network. Stores data & apps <strong>between cloud and end-devices</strong>.</div>
+      <ul class="kp">
+        <li>Nodes = <strong>fog nodes</strong> (devices at the edge)</li>
+        <li>Reduces latency — processing done near where data is created</li>
+        <li>Improves real-time decision making</li>
+        <li>Reduces data sent to central cloud → saves costs</li>
+      </ul>
+      <p style="font-size:12px;color:var(--muted);margin:8px 0 4px;font-weight:600;">4 Types:</p>
+      <ul class="kp">
+        <li><strong>Device-level:</strong> Sensors, switches, routers</li>
+        <li><strong>Edge-level:</strong> Servers/appliances at network edge</li>
+        <li><strong>Gateway-level:</strong> Between edge and cloud</li>
+        <li><strong>Cloud-level:</strong> Process before reaching end users</li>
+      </ul>
+      <div class="example-box"><strong>Uses:</strong> Connected cars, smart cities, Industrial IoT, connected health, AR/VR</div>
+    </div>
+
+    <!-- NIST DEFINITION -->
+    <div class="card">
+      <div class="card-title">📋 NIST Definition & 5 Characteristics</div>
+      <div class="def-box">"A model for enabling <strong>ubiquitous, convenient, on-demand</strong> network access to a shared pool of configurable computing resources that can be <strong>rapidly provisioned and released with minimal management effort</strong>."</div>
+      <p style="font-size:12px;color:var(--muted);margin-bottom:6px;font-weight:600;">5 Essential Characteristics:</p>
+      <ul class="num-list">
+        <li><strong>On-Demand Self-Service</strong> — Provision without human interaction from provider</li>
+        <li><strong>Broad Network Access</strong> — Available over network, any device</li>
+        <li><strong>Resource Pooling</strong> — Multi-tenant, dynamically assigned</li>
+        <li><strong>Rapid Elasticity</strong> — Scale up/down instantly to match demand</li>
+        <li><strong>Measured Service</strong> — Pay-per-use metering</li>
+      </ul>
+    </div>
+
+    <!-- SERVICE MODELS -->
+    <div class="card full-width">
+      <div class="card-title">🏗 SPI Service Models (IaaS, PaaS, SaaS)</div>
+      <div class="spi-block">
+        <div class="spi-item">
+          <div class="spi-letter" style="color:var(--u1)">I</div>
+          <div class="spi-name">IaaS</div>
+          <p style="font-size:12px;color:var(--text);margin-bottom:8px;">Infrastructure as a Service — lowest level. Virtualized compute, storage, networking. User manages OS upward.</p>
+          <div class="spi-examples">AWS EC2 · GCP Compute Engine · Azure VMs · IBM Virtual Servers</div>
+        </div>
+        <div class="spi-item">
+          <div class="spi-letter" style="color:var(--u2)">P</div>
+          <div class="spi-name">PaaS</div>
+          <p style="font-size:12px;color:var(--text);margin-bottom:8px;">Platform as a Service — pre-configured dev environment. Runtimes, DBs, dev tools. Provider manages infra + OS.</p>
+          <div class="spi-examples">AWS Elastic Beanstalk · Google App Engine · Azure App Services · Heroku</div>
+        </div>
+        <div class="spi-item">
+          <div class="spi-letter" style="color:var(--u3)">S</div>
+          <div class="spi-name">SaaS</div>
+          <p style="font-size:12px;color:var(--text);margin-bottom:8px;">Software as a Service — highest level. Fully managed apps via browser. User manages nothing. Pay-as-you-go subscription.</p>
+          <div class="spi-examples">Google Workspace · Microsoft 365 · Salesforce · Dropbox · Zoom · Slack</div>
+        </div>
+      </div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:12px;">
+        <div class="def-box"><strong>BPaaS:</strong> Business Process as a Service — outsource business processes (HR, payroll, accounting) via cloud. IBM, Wipro, Cognizant providers. Priced per use.</div>
+        <div class="def-box"><strong>HaaS:</strong> Hardware as a Service — rent physical hardware on subscription. Provider handles maintenance, upgrades. No capital expenditure. Less customizable vs owned hardware.</div>
+      </div>
+    </div>
+
+    <!-- DEPLOYMENT MODELS -->
+    <div class="card full-width">
+      <div class="card-title">🏢 4 Cloud Deployment Models</div>
+      <table class="comp-table">
+        <tr>
+          <th>Model</th><th>Access</th><th>Who Owns</th><th>Pros</th><th>Cons</th><th>Use Cases</th>
+        </tr>
+        <tr>
+          <td><span class="pill pill-blue">Private</span></td>
+          <td>Single org only</td>
+          <td>Org / 3rd party</td>
+          <td>Control, security, customization</td>
+          <td>High cost, needs skilled team</td>
+          <td>Banking, medical, government</td>
+        </tr>
+        <tr>
+          <td><span class="pill pill-green">Community</span></td>
+          <td>Specific community</td>
+          <td>Org(s) / 3rd party</td>
+          <td>Cost sharing, collaboration</td>
+          <td>Fixed storage, limited use</td>
+          <td>Universities + police sharing</td>
+        </tr>
+        <tr>
+          <td><span class="pill pill-orange">Public</span></td>
+          <td>General public</td>
+          <td>Service provider</td>
+          <td>Easy management, cost, reliability</td>
+          <td>No control, security risk</td>
+          <td>File sharing, email, dev/test</td>
+        </tr>
+        <tr>
+          <td><span class="pill pill-purple">Hybrid</span></td>
+          <td>Mixed</td>
+          <td>Combination</td>
+          <td>Flexible, scalable, best of both</td>
+          <td>Data silos, complex cost mgmt</td>
+          <td>Sensitive data private + public for users</td>
+        </tr>
+      </table>
+    </div>
+
+    <!-- GREEN CLOUD -->
+    <div class="card">
+      <div class="card-title">🌱 Green & Smart Cloud Computing</div>
+      <div class="def-box">By 2025, data centers projected to consume <strong>20% of global electricity</strong> and emit <strong>5.5% of carbon emissions</strong>.</div>
+      <p style="font-size:12px;color:var(--muted);margin-bottom:6px;font-weight:600;">3 Main Goals:</p>
+      <ul class="kp">
+        <li>Maximize energy efficiency</li>
+        <li>Promote recycling</li>
+        <li>Minimize hazardous materials</li>
+      </ul>
+      <p style="font-size:12px;color:var(--muted);margin:8px 0 4px;font-weight:600;">5 Ideas of Green Computing:</p>
+      <ul class="kp">
+        <li><strong>Virtualization</strong> — Max resource use, fewer physical servers</li>
+        <li><strong>Efficient Data Centers</strong> — Energy-efficient hardware + cooling</li>
+        <li><strong>Renewable Energy</strong> — Solar, wind power</li>
+        <li><strong>Energy Audits</strong> — Identify improvement areas</li>
+        <li><strong>Carbon Offsetting</strong> — Credits, green project investments</li>
+      </ul>
+      <div class="example-box"><strong>Examples:</strong> Google — carbon neutral, 24/7 carbon-free by 2030. Microsoft — carbon negative by 2030. AWS — 100% renewable 7 years early, 4.1x more efficient than traditional data centers.</div>
+    </div>
+
+    <!-- BENEFITS & CHALLENGES -->
+    <div class="card">
+      <div class="card-title">✅ Benefits & ⚠ Challenges</div>
+      <table class="comp-table">
+        <tr><th>Benefits</th><th>Challenges</th></tr>
+        <tr><td>Cost savings (pay-as-you-go)</td><td>Security vulnerabilities</td></tr>
+        <tr><td>Increased productivity (anywhere access)</td><td>Service interruptions/outages</td></tr>
+        <tr><td>Auto software updates</td><td>Lack of control (3rd party)</td></tr>
+        <tr><td>Increased reliability (SLAs)</td><td>Data privacy concerns</td></tr>
+        <tr><td>Easy scalability</td><td>Vendor lock-in</td></tr>
+        <tr><td>Faster provisioning</td><td>Internet dependency</td></tr>
+      </table>
+    </div>
+
+    <!-- TRADITIONAL vs CLOUD -->
+    <div class="card">
+      <div class="card-title">🔁 SPI vs Traditional IT Model</div>
+      <table class="comp-table">
+        <tr><th>Dimension</th><th>Traditional</th><th>Cloud</th></tr>
+        <tr><td>Cost</td><td>High upfront CAPEX</td><td>Pay-as-you-go OPEX</td></tr>
+        <tr><td>Scalability</td><td>Buy new hardware</td><td>Instant scale up/down</td></tr>
+        <tr><td>Flexibility</td><td>Local only</td><td>Any device, anywhere</td></tr>
+        <tr><td>Security</td><td>Firewalls, outdated methods</td><td>Encryption, IAM, MFA</td></tr>
+        <tr><td>Maintenance</td><td>In-house IT required</td><td>Provider handles it</td></tr>
+        <tr><td>Reliability</td><td>Single point of failure</td><td>Redundant, SLAs</td></tr>
+      </table>
+    </div>
+
+  </div><!-- /topics-grid -->
+</div><!-- /unit1 -->
+
+<div class="section-divider"></div>
+
+<!-- ===================== UNIT 2 ===================== -->
+<div class="unit-section u2" id="u2">
+  <div class="unit-header">
+    <span class="unit-badge">UNIT 2 — 10 HRS</span>
+    <span class="unit-title">Virtualization & Cloud Architecture</span>
+  </div>
+
+  <div class="topics-grid">
+
+    <!-- VIRTUALIZATION BASICS -->
+    <div class="card">
+      <div class="card-title">🖥 Virtualization — Core Concept</div>
+      <div class="def-box">Representation of physical computing resources in <strong>simulated (virtual) form</strong> through software. A software layer transforms physical hardware into virtual machines users can configure independently.</div>
+      <ul class="kp">
+        <li>Software module = <strong>Hypervisor</strong> (VMM — Virtual Machine Monitor)</li>
+        <li>Virtual processor works only when physical processor backs it</li>
+        <li>Guest OS executes as if running directly on physical hardware</li>
+        <li>Running multiple VMs simultaneously on one physical machine</li>
+      </ul>
+      <p style="font-size:12px;color:var(--muted);margin:8px 0 4px;font-weight:600;">Benefits:</p>
+      <ul class="kp">
+        <li><strong>Resource efficiency:</strong> Max hardware utilization, no idle servers</li>
+        <li><strong>Easier management:</strong> Software-defined policies, automated workflows</li>
+        <li><strong>Minimal downtime:</strong> Failover between redundant VMs</li>
+        <li><strong>Faster provisioning:</strong> Deploy VMs in minutes vs weeks for hardware</li>
+      </ul>
+    </div>
+
+    <!-- HYPERVISORS -->
+    <div class="card">
+      <div class="card-title">🔧 Hypervisors (VMM)</div>
+      <table class="comp-table">
+        <tr><th></th><th>Type 1 (Bare-Metal)</th><th>Type 2 (Hosted)</th></tr>
+        <tr><td>Runs on</td><td>Directly on hardware</td><td>On top of host OS</td></tr>
+        <tr><td>Performance</td><td>Higher (no OS overhead)</td><td>Lower</td></tr>
+        <tr><td>Security</td><td>More secure</td><td>Less secure</td></tr>
+        <tr><td>Used in</td><td>Enterprise/cloud datacenters</td><td>Dev, testing, personal</td></tr>
+        <tr><td>Examples</td><td>VMware ESXi, Hyper-V, KVM, Xen</td><td>VirtualBox, VMware Workstation, Parallels</td></tr>
+      </table>
+      <div class="callout"><strong>Proprietary:</strong> Hyper-V (Microsoft), ESXi (VMware) &nbsp;|&nbsp; <strong>Open-source:</strong> KVM (Red Hat), VirtualBox (Oracle), XenServer (Citrix)</div>
+    </div>
+
+    <!-- SERVER VIRTUALIZATION -->
+    <div class="card">
+      <div class="card-title">🗄 Server Virtualization</div>
+      <div class="def-box">Creates and abstracts multiple virtual instances on a single physical server. A hypervisor is installed; multiple VMs each run their own OS.</div>
+      <p style="font-size:12px;color:var(--muted);margin-bottom:6px;font-weight:600;">Benefits:</p>
+      <ul class="kp">
+        <li><strong>Server consolidation:</strong> One physical = multiple logical servers</li>
+        <li><strong>Simpler infrastructure:</strong> Fewer racks, cables, hardware</li>
+        <li><strong>Cost reduction:</strong> Less power, cooling, hardware spend</li>
+        <li><strong>Versatility:</strong> Each VM is independent with own OS</li>
+        <li><strong>VM migration:</strong> Move VMs between hosts easily</li>
+      </ul>
+      <div class="example-box"><strong>Example:</strong> A 4-CPU 64GB RAM server can host up to 4 VMs each with 1 vCPU and 16GB RAM. Popular hypervisors: Microsoft Hyper-V, VMware vSphere.</div>
+    </div>
+
+    <!-- APPLICATION VIRTUALIZATION -->
+    <div class="card">
+      <div class="card-title">📦 Application Virtualization</div>
+      <div class="def-box">Separation of an app from the OS and hardware. App runs in an isolated sandbox/virtual bubble — cannot permanently modify host system files or registry.</div>
+      <p style="font-size:12px;color:var(--muted);margin-bottom:6px;font-weight:600;">3 Types:</p>
+      <ul class="kp">
+        <li><strong>Local App Virtualization:</strong> App runs on local CPU in a sandbox. Offline capable. Example: VMware ThinApp (.exe with no install)</li>
+        <li><strong>Application Streaming:</strong> Only needed parts downloaded on-demand. Fast startup. Example: Citrix App Streaming, Adobe Creative Cloud</li>
+        <li><strong>Server-Based:</strong> App runs on server; only UI streamed to user. Thin client. Example: Microsoft RemoteApp, Citrix Virtual Apps, Amazon AppStream 2.0</li>
+      </ul>
+      <p style="font-size:12px;color:var(--muted);margin:8px 0 4px;font-weight:600;">Key Benefits:</p>
+      <ul class="kp">
+        <li><strong>Zero-Conflict Isolation:</strong> Run two incompatible versions side-by-side</li>
+        <li><strong>Security Sandboxing:</strong> Malware trapped in bubble, can't spread</li>
+        <li><strong>Instant Updates:</strong> Update master file on server; all users auto-updated</li>
+      </ul>
+      <div class="example-box"><strong>Vendors:</strong> Microsoft App-V, Citrix Virtual Apps, Parallels RAS, VMware ThinApp/App Volumes</div>
+    </div>
+
+    <!-- NETWORK VIRTUALIZATION -->
+    <div class="card">
+      <div class="card-title">🌐 Network Virtualization</div>
+      <div class="def-box">Converting network resources from hardware to software. Can combine multiple physical networks into one virtual network OR divide one physical into multiple virtual ones.</div>
+      <p style="font-size:12px;color:var(--muted);margin-bottom:6px;font-weight:600;">Two Approaches:</p>
+      <ul class="kp">
+        <li><strong>SDN (Software-Defined Networking):</strong> Separates control plane from data plane. Control plane = central controller; data plane = forwarding. Can prioritize traffic (e.g., video calls over app traffic).</li>
+        <li><strong>NFV (Network Function Virtualization):</strong> Replaces hardware appliances (routers, firewalls) with VMs on commodity servers. NFV provides infrastructure for SDN.</li>
+      </ul>
+      <p style="font-size:12px;color:var(--muted);margin:8px 0 4px;font-weight:600;">Traditional vs SDN:</p>
+      <ul class="kp">
+        <li>Traditional: control plane + data plane are <em>embedded together</em></li>
+        <li>SDN: control plane is <em>separated</em> as a central controller for many data planes</li>
+      </ul>
+      <div class="example-box"><strong>Examples:</strong> VLAN, Google Cloud/AWS virtual networks, Netflix streaming, Telecom providers (AT&T, Verizon, Jio) using SDN+NFV</div>
+    </div>
+
+    <!-- STORAGE VIRTUALIZATION -->
+    <div class="card">
+      <div class="card-title">💾 Storage Virtualization</div>
+      <div class="def-box">Pooling physical storage from multiple devices into a single logical storage unit managed by a central console.</div>
+      <p style="font-size:12px;color:var(--muted);margin-bottom:6px;font-weight:600;">2 Types:</p>
+      <ul class="kp">
+        <li><strong>Block-Level Virtualization:</strong> Works at smallest storage unit (blocks). Used in SANs. Key component = LUN (Logical Unit Number). Uses RAID for redundancy + performance.</li>
+        <li><strong>File-Level Virtualization:</strong> Works at file system layer. Multiple file servers appear as one. Used in NAS. Uses DFS (Distributed File System), NFS, SMB protocols. Example: Google Drive</li>
+      </ul>
+      <p style="font-size:12px;color:var(--muted);margin:8px 0 4px;font-weight:600;">RAID = Redundant Array of Independent Disks</p>
+      <p style="font-size:12px;color:#94a3b8;">Combines multiple HDDs into a logical unit for redundancy + performance. Protects against data loss if a drive fails.</p>
+    </div>
+
+    <!-- NAS vs SAN -->
+    <div class="card">
+      <div class="card-title">🔌 NAS vs SAN</div>
+      <table class="comp-table">
+        <tr><th>Aspect</th><th>NAS (Network Attached Storage)</th><th>SAN (Storage Area Network)</th></tr>
+        <tr><td>Access type</td><td>File-level</td><td>Block-level</td></tr>
+        <tr><td>Connection</td><td>Standard Ethernet (LAN)</td><td>Dedicated high-speed network</td></tr>
+        <tr><td>Complexity</td><td>Simple, browser-managed</td><td>Complex, enterprise-grade</td></tr>
+        <tr><td>Cost</td><td>Lower</td><td>Higher (needs IT dept)</td></tr>
+        <tr><td>Best for</td><td>File sharing, small-medium org</td><td>High-demand (video, e-commerce)</td></tr>
+        <tr><td>IP address</td><td>Unique IP, independent node</td><td>Not IP-based typically</td></tr>
+      </table>
+    </div>
+
+    <!-- STORAGE NETWORK ARCHITECTURE -->
+    <div class="card">
+      <div class="card-title">🏛 Storage Network Architecture — 3 Layers</div>
+      <ul class="num-list">
+        <li><strong>Host Layer (Servers):</strong> Servers/hosts that generate or consume data. Run applications. Rely on fabric layer to access storage. Can be virtualized.</li>
+        <li><strong>Fabric Layer (Network Infrastructure):</strong> Switches, routers, cables connecting servers to storage. Protocols: Fibre Channel (FC), iSCSI, FCoE. Enables load balancing, redundancy, fault tolerance.</li>
+        <li><strong>Storage Layer:</strong> Actual storage devices — disk arrays, SSDs, object storage. Implements RAID, data deduplication, compression. Centralized data pool for all servers.</li>
+      </ul>
+    </div>
+
+    <!-- CLOUD OPTIMIZATION -->
+    <div class="card">
+      <div class="card-title">⚙ Cloud Optimization</div>
+      <div class="def-box">Strategically managing and allocating cloud resources to <strong>maximize performance, minimize waste, and reduce costs</strong>. Prevents cloud sprawl (uncontrolled growth of cloud services).</div>
+      <table class="comp-table">
+        <tr><th>Area</th><th>Key Strategies</th></tr>
+        <tr><td><strong>Cost</strong></td><td>Right-sizing, auto-scaling, reserved instances, spot instances, cost management tools (AWS Cost Explorer)</td></tr>
+        <tr><td><strong>Performance</strong></td><td>Load balancing, caching, CDNs, database optimization (indexing, partitioning)</td></tr>
+        <tr><td><strong>Resource</strong></td><td>Dynamic allocation, containerization (Docker, Kubernetes), serverless computing</td></tr>
+        <tr><td><strong>Storage</strong></td><td>Data tiering (hot/cold), data deduplication, compression</td></tr>
+        <tr><td><strong>Security</strong></td><td>IAM, encryption, monitoring</td></tr>
+      </table>
+      <div class="callout"><strong>Reserved Instances:</strong> Pre-purchase capacity at discount (long-term commitment) &nbsp;|&nbsp; <strong>Spot Instances:</strong> Unused capacity at huge discount, can be interrupted</div>
+    </div>
+
+    <!-- VIRTUALBOX -->
+    <div class="card">
+      <div class="card-title">📦 VirtualBox vs Hyper-V</div>
+      <table class="comp-table">
+        <tr><th>Aspect</th><th>VirtualBox (Oracle)</th><th>Hyper-V (Microsoft)</th></tr>
+        <tr><td>Type</td><td>Type 2 Hypervisor</td><td>Type 1 Hypervisor</td></tr>
+        <tr><td>License</td><td>Free, Open-source</td><td>Proprietary (with Windows)</td></tr>
+        <tr><td>Runs on</td><td>Windows, Linux, Mac, Solaris</td><td>Windows Server</td></tr>
+        <tr><td>Performance</td><td>Lower (on top of host OS)</td><td>Higher (on bare metal)</td></tr>
+        <tr><td>Best for</td><td>Dev/testing, personal use</td><td>Enterprise, production</td></tr>
+        <tr><td>Cross-platform</td><td>Yes — wide OS support</td><td>Windows-focused</td></tr>
+      </table>
+      <p style="font-size:12px;color:var(--muted);margin-top:10px;"><strong style="color:var(--text)">VirtualBox disadvantage:</strong> VM performance dependent on host's speed; all VMs on same OS affected by host problems.</p>
+    </div>
+
+  </div>
+</div>
+
+<div class="section-divider"></div>
+
+<!-- ===================== UNIT 3 ===================== -->
+<div class="unit-section u3" id="u3">
+  <div class="unit-header">
+    <span class="unit-badge">UNIT 3 — 10 HRS</span>
+    <span class="unit-title">Cloud Security</span>
+  </div>
+
+  <div class="topics-grid">
+
+    <!-- WEB SERVICES -->
+    <div class="card">
+      <div class="card-title">🌐 Web Services</div>
+      <div class="def-box">A software app/API allowing communication between different applications over the internet using standard protocols (HTTP, SOAP, REST). Enables interoperability across different programming languages/platforms.</div>
+      <p style="font-size:12px;color:var(--muted);margin-bottom:6px;font-weight:600;">How it works:</p>
+      <ul class="kp">
+        <li>Client sends request → via <strong>RPC (Remote Procedure Calls)</strong> over HTTP/HTTPS</li>
+        <li>Server processes, queries DB if needed</li>
+        <li>Server responds with <strong>XML or JSON</strong> data</li>
+      </ul>
+      <table class="comp-table" style="margin-top:10px;">
+        <tr><th></th><th>SOAP</th><th>REST</th></tr>
+        <tr><td>Protocol</td><td>XML-based messaging</td><td>HTTP methods (GET/POST/PUT/DELETE)</td></tr>
+        <tr><td>Data format</td><td>XML only</td><td>JSON preferred (also XML)</td></tr>
+        <tr><td>Standards</td><td>Strict (WS-Security)</td><td>Flexible, stateless</td></tr>
+        <tr><td>Speed</td><td>Slower</td><td>Faster, lightweight</td></tr>
+        <tr><td>WSDL</td><td>Yes — describes service</td><td>No</td></tr>
+        <tr><td>Use case</td><td>Banking, payment gateways</td><td>Social media APIs, weather APIs</td></tr>
+      </table>
+    </div>
+
+    <!-- WEB 1.0 / 2.0 / 3.0 -->
+    <div class="card">
+      <div class="card-title">📡 Web 1.0, 2.0, and 3.0</div>
+      <ul class="kp">
+        <li><strong>Web 1.0 (1991–2004) "Read-Only":</strong> Static pages, CDN-based content delivery, server-side file systems, CGI/SSI, frames & tables. Few creators, many consumers. Example: Yahoo! Directory, Netscape, MSN</li>
+        <li><strong>Web 2.0 (2004–now) "Read & Write":</strong> User-generated content, dynamic content (AJAX), social interaction, APIs, participative. AJAX = Asynchronous JS+XML for background server calls. Example: Facebook, Twitter, YouTube, Wikipedia, Amazon, eBay</li>
+        <li><strong>Web 3.0 (2020s+) "Read, Write & Execute":</strong> Blockchain-based decentralization, AI/ML, Semantic Web (machines understand data), cryptocurrency, smart contracts. Example: Bitcoin, Ethereum, DApps, AI assistants, DAOs</li>
+      </ul>
+      <div class="callout"><strong>Key Web 2.0 features:</strong> Free sorting of info, dynamic content, site owner ↔ user flow, developed APIs, broader user base</div>
+    </div>
+
+    <!-- WEB OS -->
+    <div class="card">
+      <div class="card-title">💻 Web Operating System (WebOS)</div>
+      <div class="def-box">An internet-based user interface that allows accessing applications not stored locally but on the internet. A <strong>dummy OS</strong> that doesn't interact directly with hardware; relies on traditional OS. Interface for distributed/cloud computing.</div>
+      <ul class="kp">
+        <li>Apps, hard disk, OS all reside on remote servers</li>
+        <li>GUI feels like a PC desktop environment</li>
+        <li>Portable — access from any browser, any device</li>
+        <li>No hardware problems; just need browser + internet</li>
+      </ul>
+      <p style="font-size:12px;color:var(--muted);margin:8px 0 4px;font-weight:600;">Features: </p>
+      <p style="font-size:12px;color:#94a3b8;">Calendar, calculator, text editor, audio-video player, photo editor, email client, IM, file storage, file sharing, desktop search, mini-browser, games</p>
+      <p style="font-size:12px;color:var(--muted);margin:8px 0 4px;font-weight:600;">Disadvantages:</p>
+      <ul class="kp">
+        <li>Dependent on network speed and server load</li>
+        <li>Authentication, access control, privacy issues</li>
+        <li>Requires fast, reliable internet connection</li>
+      </ul>
+    </div>
+
+    <!-- CLOUD SECURITY OVERVIEW -->
+    <div class="card">
+      <div class="card-title">🔐 Cloud Security — Overview</div>
+      <div class="def-box">Set of policies, technologies, controls designed to protect cloud environments from threats. Ensures <strong>CIA triad: Confidentiality, Integrity, Availability</strong>.</div>
+      <p style="font-size:12px;color:var(--muted);margin-bottom:6px;font-weight:600;">Key Aspects:</p>
+      <ul class="kp">
+        <li><strong>Data Security:</strong> Encryption, access controls, secure backups</li>
+        <li><strong>IAM:</strong> Only authorized users/devices access resources</li>
+        <li><strong>Network Security:</strong> Firewalls, IDS, secure configurations</li>
+        <li><strong>Threat Detection:</strong> Malware, ransomware, DDoS detection</li>
+        <li><strong>Compliance:</strong> GDPR, HIPAA, ISO 27001</li>
+        <li><strong>Incident Response:</strong> Breach response + data recovery</li>
+        <li><strong>Secure APIs:</strong> Protect from SQL injection, unauthorized access</li>
+      </ul>
+      <div class="callout">Traditional security used <strong>perimeter-based firewalls</strong>. Cloud breaks this — resources are outside the network boundary, requiring a <strong>new de-perimeterized security philosophy</strong>.</div>
+    </div>
+
+    <!-- SECURITY THREATS -->
+    <div class="card full-width">
+      <div class="card-title">⚠ 8 Main Cloud Security Threats</div>
+      <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:4px;">
+        <div class="def-box" style="margin:0"><strong>1. Misconfiguration</strong><br>Improper cloud configs — default creds, open S3 buckets, excessive permissions, open ports, unpatched systems. Impact: data breaches, DoS, financial loss.</div>
+        <div class="def-box" style="margin:0"><strong>2. Insecure APIs</strong><br>Weak auth, no encryption, excessive data exposure. Example: Capital One breach 2019 — 106M customers' data stolen via misconfigured API.</div>
+        <div class="def-box" style="margin:0"><strong>3. Account Hijacking</strong><br>Weak passwords, reuse, phishing. Example: Uber 2022 — attacker stole creds via phishing, bypassed MFA via repeated push notifications.</div>
+        <div class="def-box" style="margin:0"><strong>4. External Data Sharing</strong><br>Cloud makes sharing easy (links, email). Hard to control access to shared resources. Anyone with URL can access.</div>
+        <div class="def-box" style="margin:0"><strong>5. Malicious Insiders</strong><br>Already has authorized access. Harder to detect in cloud since org lacks control over underlying infrastructure.</div>
+        <div class="def-box" style="margin:0"><strong>6. Unauthorized Access</strong><br>Cloud infra directly accessible from internet (no perimeter). Misconfigured security or compromised credentials = direct attacker access.</div>
+        <div class="def-box" style="margin:0"><strong>7. Cyberattacks</strong><br>Malware, ransomware, etc. targeting cloud systems and data.</div>
+        <div class="def-box" style="margin:0"><strong>8. DoS/DDoS Attacks</strong><br>Flood servers with traffic to make services unavailable. Exploit networking protocol vulnerabilities.</div>
+      </div>
+      <div style="margin-top:12px;" class="def-box"><strong>+ Vendor Lock-In:</strong> Over-dependency on one CSP due to proprietary tech, high migration costs, contractual constraints. Example: Netflix deeply tied to AWS. Prevention: multi-cloud, Docker/Kubernetes/Terraform (open standards), monitor exit costs.</div>
+    </div>
+
+    <!-- PREVENTION TIPS -->
+    <div class="card">
+      <div class="card-title">🛡 Cloud Attack Prevention Tips</div>
+      <ul class="num-list">
+        <li><strong>Enhance security policies</strong> — Define scope of responsibility clearly</li>
+        <li><strong>Strong authentication</strong> — MFA: OTP + biometrics + hardware tokens</li>
+        <li><strong>Implement access management</strong> — Role-based permissions (RBAC)</li>
+        <li><strong>Protect data</strong> — Encrypt at source, in transit, at rest. Use tokenization.</li>
+        <li><strong>Detect intrusions</strong> — Managed IDS (AWS GuardDuty, Azure Defender, Snort)</li>
+        <li><strong>Secure APIs</strong> — OAuth 2.0, JWT, TLS, rate limiting, PoLP</li>
+        <li><strong>Protect cloud services</strong> — Minimize event handler permissions</li>
+      </ul>
+      <div class="example-box"><strong>Tokenization:</strong> Replacing sensitive data (credit card: 4111 1111 1111 1111) with token (TKN_89FJ-82KS-KJ29-QW88)</div>
+    </div>
+
+    <!-- SECURITY MEASURES -->
+    <div class="card">
+      <div class="card-title">🔒 Cloud Security Measures</div>
+      <ul class="kp">
+        <li><strong>Encryption:</strong> Data encrypted in transit and at rest</li>
+        <li><strong>Access Control:</strong> IAM — only authorized users access data</li>
+        <li><strong>Network Security:</strong> Firewalls, VPNs, network monitoring</li>
+        <li><strong>Physical Security:</strong> Biometric auth, surveillance cameras at data centers</li>
+        <li><strong>Compliance:</strong> ISO 27001, SOC 2, PCI DSS certifications</li>
+        <li><strong>Disaster Recovery:</strong> Robust DR and business continuity plans</li>
+        <li><strong>Monitoring & Auditing:</strong> Detect/respond to incidents, maintain activity logs</li>
+      </ul>
+    </div>
+
+    <!-- CLOUD SECURITY GROUPS -->
+    <div class="card">
+      <div class="card-title">🏛 Cloud Security Working Groups</div>
+      <div class="def-box"><strong>CSA (Cloud Security Alliance):</strong> World's leading non-profit for cloud security best practices. Based in Washington, US. Offers CCSK certification (Certificate of Cloud Security Knowledge).</div>
+      <p style="font-size:12px;color:var(--muted);margin-bottom:6px;margin-top:8px;font-weight:600;">CSA Objectives:</p>
+      <ul class="kp">
+        <li>Common understanding between cloud providers and consumers on security</li>
+        <li>Develop best practices via independent research</li>
+        <li>Educational programs (CCSK certification)</li>
+        <li>Standardized list of cloud threats</li>
+      </ul>
+      <div class="def-box" style="margin-top:12px;"><strong>Jericho Forum:</strong> Formed 2004, proposed Cloud Cube Model in 2009 (accepted as global standard). Became part of 'The Open Group' and closed in 2013 (objectives fulfilled). Members: IBM, Symantec, Boeing, AstraZeneca, HP, etc.</div>
+    </div>
+
+    <!-- CLOUD CUBE MODEL -->
+    <div class="card full-width">
+      <div class="card-title">🧊 Cloud Cube Model (Jericho Forum, 2009)</div>
+      <p style="font-size:13px;color:var(--muted);margin-bottom:12px;">Designed to address the <strong>de-perimeterization problem</strong>. Helps categorize and select cloud formations using 4 dimensional security criteria.</p>
+      <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:12px;">
+        <div class="def-box" style="margin:0;text-align:center">
+          <div style="font-size:20px;margin-bottom:6px">📍</div>
+          <strong>Data Boundary</strong><br>
+          <span class="pill pill-blue">Internal</span> vs <span class="pill pill-green">External</span><br>
+          <span style="font-size:11px;color:var(--muted)">Where is data physically stored? Inside org campus (private cloud) vs outside (public cloud)</span>
+        </div>
+        <div class="def-box" style="margin:0;text-align:center">
+          <div style="font-size:20px;margin-bottom:6px">🔑</div>
+          <strong>Ownership</strong><br>
+          <span class="pill pill-purple">Proprietary</span> vs <span class="pill pill-orange">Open</span><br>
+          <span style="font-size:11px;color:var(--muted)">Proprietary = trade secret tech (limited interop). Open = follows published open standards.</span>
+        </div>
+        <div class="def-box" style="margin:0;text-align:center">
+          <div style="font-size:20px;margin-bottom:6px">🔐</div>
+          <strong>Security Boundary</strong><br>
+          <span class="pill pill-blue">Perimeterized</span> vs <span class="pill pill-red">De-perimeterized</span><br>
+          <span style="font-size:11px;color:var(--muted)">Perimeterized = inside org network (VPN for external). De-perimeterized = open collaboration, data-level encryption.</span>
+        </div>
+        <div class="def-box" style="margin:0;text-align:center">
+          <div style="font-size:20px;margin-bottom:6px">🏢</div>
+          <strong>Sourcing</strong><br>
+          <span class="pill pill-green">Insourced</span> vs <span class="pill pill-orange">Outsourced</span><br>
+          <span style="font-size:11px;color:var(--muted)">Insourced = own team manages (→ private cloud). Outsourced = 3rd party delivers (→ can be public or private).</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- ELEMENTS OF SECURITY MODEL -->
+    <div class="card">
+      <div class="card-title">📑 Elements of Cloud Security Model</div>
+      <ul class="kp">
+        <li><strong>Privileged user access:</strong> Ask provider who manages the cloud</li>
+        <li><strong>Regulatory compliance:</strong> Choose providers with security certifications & external audits</li>
+        <li><strong>Data location:</strong> Know where data is stored (consumers usually don't)</li>
+        <li><strong>Data segregation:</strong> Separate different consumer data with encryption</li>
+        <li><strong>Recovery:</strong> Provider must declare recovery process and timeline</li>
+        <li><strong>Investigative support:</strong> Contractual commitment for investigation support</li>
+        <li><strong>Long-term viability:</strong> What happens to data if provider shuts down?</li>
+      </ul>
+    </div>
+
+    <!-- LOAD BALANCING -->
+    <div class="card">
+      <div class="card-title">⚖ Load Balancing</div>
+      <div class="def-box">Distributes network traffic equally across a pool of resources. Ensures no server is overloaded/underloaded/idle. A load balancer sits between user and server group.</div>
+      <p style="font-size:12px;color:var(--muted);margin-bottom:6px;font-weight:600;">How it works:</p>
+      <ul class="kp">
+        <li>Client request → Load balancer receives it</li>
+        <li>Algorithm routes to best-suited server in farm</li>
+        <li>Server responds → load balancer forwards to client</li>
+        <li>Load balancer handles SSL offload (decrypt TLS so servers don't have to)</li>
+      </ul>
+      <table class="comp-table" style="margin-top:10px;">
+        <tr><th></th><th>Static Load Balancing</th><th>Dynamic Load Balancing</th></tr>
+        <tr><td>Rules</td><td>Fixed, independent of server state</td><td>Examines current server state</td></tr>
+        <tr><td>Traffic</td><td>Divided equally</td><td>Routes to lightest/least busy server</td></tr>
+        <tr><td>Best for</td><td>Low-variation load systems</td><td>Real-time, varying load</td></tr>
+        <tr><td>Decision</td><td>Pre-set, no real-time comms</td><td>Real-time communication needed</td></tr>
+      </table>
+      <p style="font-size:12px;color:var(--muted);margin:8px 0 4px;font-weight:600;">Load Balancing Advantages:</p>
+      <ul class="kp">
+        <li><strong>Availability:</strong> Detects server failure, redirects to working servers</li>
+        <li><strong>Scalability:</strong> Direct traffic intelligently across servers</li>
+        <li><strong>Security:</strong> Built-in DDoS protection layer</li>
+        <li><strong>Performance:</strong> Better response time, reduced latency</li>
+      </ul>
+    </div>
+
+    <!-- IAM -->
+    <div class="card">
+      <div class="card-title">👤 Identity Access Management (IAM)</div>
+      <div class="def-box">Manages users and permissions for cloud resources. Defines roles, access privileges, and conditions for granting them. <strong>One digital identity per individual</strong> — maintained throughout access lifecycle.</div>
+      <p style="font-size:12px;color:var(--muted);margin-bottom:6px;font-weight:600;">4 Components:</p>
+      <ul class="kp">
+        <li><strong>Authentication:</strong> Username/password, digital signatures, digital certificates, biometrics</li>
+        <li><strong>Authorization:</strong> Access control — which user can access which resource</li>
+        <li><strong>User Management:</strong> Create users, manage groups, password policies, privileges</li>
+        <li><strong>Credential Management:</strong> Establish identities and access control rules</li>
+      </ul>
+      <div class="callout">Without IAM: multiple accounts each with own billing, OR shared single credentials with no access control. IAM solves both problems under one account.</div>
+    </div>
+
+    <!-- THIN CLIENT -->
+    <div class="card">
+      <div class="card-title">🖥 Thin Client vs Thick Client</div>
+      <table class="comp-table">
+        <tr><th>Aspect</th><th>Thin Client</th><th>Thick Client (Fat Client)</th></tr>
+        <tr><td>Resources</td><td>Relies on remote server</td><td>Relies lightly on server</td></tr>
+        <tr><td>Local storage</td><td>No local storage</td><td>Has own storage + software</td></tr>
+        <tr><td>Security</td><td>More secure (fewer threats)</td><td>Less secure (more attack surface)</td></tr>
+        <tr><td>Hardware cost</td><td>Low</td><td>Higher</td></tr>
+        <tr><td>Energy use</td><td>Low</td><td>Higher</td></tr>
+        <tr><td>Maintenance</td><td>Easy, centralized</td><td>Complex, per-device</td></tr>
+        <tr><td>Offline work</td><td>Not possible</td><td>Possible</td></tr>
+        <tr><td>Server dependency</td><td>Complete — if server down, halted</td><td>Minimal</td></tr>
+      </table>
+    </div>
+
+  </div>
+</div>
+
+<div class="section-divider"></div>
+
+<!-- ===================== UNIT 4 ===================== -->
+<div class="unit-section u4" id="u4">
+  <div class="unit-header">
+    <span class="unit-badge">UNIT 4 — 10 HRS</span>
+    <span class="unit-title">Cloud Providers & Case Studies</span>
+  </div>
+
+  <div class="topics-grid">
+
+    <!-- AMAZON EC2 -->
+    <div class="card">
+      <div class="card-title">☁ Amazon EC2 (Elastic Compute Cloud)</div>
+      <div class="def-box">Part of AWS — provides scalable virtual computing environments (instances) in the cloud. Launched 2006. Users can launch, configure, and manage VMs on demand.</div>
+      <p style="font-size:12px;color:var(--muted);margin-bottom:6px;font-weight:600;">Key Features:</p>
+      <ul class="kp">
+        <li><strong>Elastic:</strong> Scale compute capacity up/down in minutes</li>
+        <li><strong>Instance types:</strong> General purpose, compute-optimized, memory-optimized, GPU, storage-optimized</li>
+        <li><strong>AMI (Amazon Machine Image):</strong> Pre-configured OS + software template to launch instances</li>
+        <li><strong>Pricing models:</strong> On-demand, Reserved, Spot, Dedicated Hosts</li>
+        <li><strong>Security Groups:</strong> Virtual firewall controlling inbound/outbound traffic</li>
+        <li><strong>Elastic IP:</strong> Static public IP address for dynamic cloud computing</li>
+        <li><strong>Auto Scaling:</strong> Automatically adjusts capacity based on defined conditions</li>
+        <li><strong>Load Balancer (ELB):</strong> Distributes traffic across EC2 instances</li>
+      </ul>
+      <div class="example-box"><strong>Other core AWS services:</strong> S3 (object storage), RDS (relational DB), Lambda (serverless), VPC (virtual private cloud), CloudWatch (monitoring), IAM, DynamoDB, CloudFront (CDN)</div>
+    </div>
+
+    <!-- AWS SLA & RECENT DEVELOPMENTS -->
+    <div class="card">
+      <div class="card-title">📄 Amazon Web Services — SLA & Recent Developments</div>
+      <div class="def-box">AWS SLA (Service Level Agreement) guarantees uptime and performance commitments. AWS EC2 SLA guarantees <strong>99.99% monthly uptime</strong> for multi-AZ (Availability Zone) deployments.</div>
+      <p style="font-size:12px;color:var(--muted);margin-bottom:6px;font-weight:600;">SLA Key Points:</p>
+      <ul class="kp">
+        <li>If uptime drops below 99.99% → <strong>service credits</strong> issued</li>
+        <li>Below 99.0% → 30% credit; 99.0–99.99% → 10% credit</li>
+        <li>Availability Zones = isolated data centers within a region for redundancy</li>
+        <li>Regions = geographic areas with multiple AZs</li>
+      </ul>
+      <p style="font-size:12px;color:var(--muted);margin:8px 0 4px;font-weight:600;">Recent Developments:</p>
+      <ul class="kp">
+        <li><strong>AWS Graviton4 chips:</strong> Custom ARM-based processors for better performance + energy efficiency</li>
+        <li><strong>Inferentia2:</strong> Custom ML inference chip; faster AI workloads</li>
+        <li><strong>Amazon Bedrock:</strong> Managed service for foundation models (GenAI)</li>
+        <li><strong>AWS Outposts:</strong> Bring AWS infrastructure on-premises</li>
+        <li><strong>Sustainability:</strong> 100% renewable energy achieved 7 years early; infrastructure 4.1x more efficient than traditional data centers</li>
+      </ul>
+    </div>
+
+    <!-- GoGrid -->
+    <div class="card">
+      <div class="card-title">🔷 GoGrid</div>
+      <div class="def-box">An early cloud computing provider offering IaaS. Founded 2008. Allowed users to deploy and manage cloud servers, load balancers, and storage. Merged into Datapipe, later acquired by Rackspace.</div>
+      <ul class="kp">
+        <li>Offered both Windows and Linux cloud servers</li>
+        <li>Pay-per-use pricing model (hourly billing)</li>
+        <li>Web-based control panel for infrastructure management</li>
+        <li>One of the first competitors to Amazon EC2</li>
+        <li>Provided persistent storage (Cloud Storage)</li>
+        <li>Supported load balancing out of the box</li>
+        <li>Notable for: multi-OS support, hybrid cloud capability</li>
+      </ul>
+    </div>
+
+    <!-- Salesforce -->
+    <div class="card">
+      <div class="card-title">💼 Salesforce.com</div>
+      <div class="def-box">Pioneer of SaaS — launched 1999. World's leading CRM (Customer Relationship Management) cloud platform. Delivered enterprise software over the internet, proving the cloud model works.</div>
+      <p style="font-size:12px;color:var(--muted);margin-bottom:6px;font-weight:600;">Key Products:</p>
+      <ul class="kp">
+        <li><strong>Sales Cloud:</strong> CRM for sales teams — leads, opportunities, contacts</li>
+        <li><strong>Service Cloud:</strong> Customer service and support management</li>
+        <li><strong>Marketing Cloud:</strong> Email marketing, digital advertising, analytics</li>
+        <li><strong>Commerce Cloud:</strong> E-commerce solutions</li>
+        <li><strong>Tableau:</strong> Data analytics and visualization</li>
+        <li><strong>Einstein AI:</strong> AI-powered predictions and automation</li>
+        <li><strong>MuleSoft:</strong> API and integration platform</li>
+        <li><strong>Slack:</strong> Business collaboration (acquired 2021)</li>
+      </ul>
+      <div class="example-box"><strong>Significance:</strong> First to prove enterprise software could be delivered as a subscription service over the internet, pioneering the SaaS model.</div>
+    </div>
+
+    <!-- Force.com -->
+    <div class="card">
+      <div class="card-title">🔧 Force.com (Salesforce Platform)</div>
+      <div class="def-box">Salesforce's PaaS offering. A platform for building and deploying custom cloud applications on top of Salesforce infrastructure. Now rebranded as <strong>Salesforce Platform</strong>.</div>
+      <ul class="kp">
+        <li>Allows developers to build custom apps that integrate with Salesforce CRM</li>
+        <li>Uses <strong>Apex</strong> (Java-like programming language) for business logic</li>
+        <li>Uses <strong>Visualforce</strong> for UI development (page framework)</li>
+        <li>Provides declarative development (drag-and-drop with Flow, Process Builder)</li>
+        <li><strong>AppExchange:</strong> Salesforce marketplace for third-party apps</li>
+        <li>Multi-tenant architecture — all customers share same infrastructure</li>
+        <li>Automatic upgrades 3x per year</li>
+        <li><strong>Heroku:</strong> Acquired by Salesforce, used for public-facing apps on Force.com</li>
+      </ul>
+    </div>
+
+    <!-- Google App Engine -->
+    <div class="card">
+      <div class="card-title">🟢 Google App Engine</div>
+      <div class="def-box">Google's PaaS offering. Allows developers to build and deploy scalable web applications on Google's infrastructure without managing servers. Fully managed serverless environment.</div>
+      <p style="font-size:12px;color:var(--muted);margin-bottom:6px;font-weight:600;">Key Features:</p>
+      <ul class="kp">
+        <li><strong>Supported languages:</strong> Python, Java, PHP, Go, Node.js, Ruby</li>
+        <li><strong>Standard Environment:</strong> Fully managed, auto-scaling, sandboxed. Free tier available.</li>
+        <li><strong>Flexible Environment:</strong> Docker containers on GCP VMs. More control.</li>
+        <li><strong>Auto-scaling:</strong> Automatically scales from 0 to millions of instances</li>
+        <li><strong>Traffic splitting:</strong> Route % of traffic to different app versions (A/B testing)</li>
+        <li><strong>Integrated services:</strong> Cloud Datastore, Cloud SQL, Memcache, Task Queues</li>
+        <li><strong>Version management:</strong> Deploy multiple versions of an app simultaneously</li>
+      </ul>
+      <div class="example-box"><strong>Other GCP Services:</strong> GCS (storage), BigQuery (analytics), GKE (Kubernetes), Cloud Functions (serverless), Firebase (mobile/web)</div>
+    </div>
+
+    <!-- Rackspace -->
+    <div class="card">
+      <div class="card-title">🔵 Rackspace</div>
+      <div class="def-box">One of the world's largest managed cloud providers. Founded 1998. Pioneered the concept of <strong>"Managed Cloud"</strong> — combines cloud infrastructure with professional management services.</div>
+      <ul class="kp">
+        <li>Co-founded <strong>OpenStack</strong> (open-source cloud OS) with NASA in 2010</li>
+        <li>Offers managed services on AWS, Azure, GCP + own infrastructure</li>
+        <li><strong>Fanatical Support:</strong> Rackspace's trademark 24/7 expert support</li>
+        <li>Multi-cloud management platform</li>
+        <li>Services: Cloud Servers, Cloud Files, Cloud Databases, Cloud Networks</li>
+        <li>Acquired GoGrid in 2019</li>
+        <li>Focus: taking complexity out of cloud management for enterprises</li>
+      </ul>
+      <div class="example-box"><strong>OpenStack:</strong> Free, open-source cloud platform for building public/private clouds. Provides compute (Nova), storage (Swift, Cinder), networking (Neutron), identity (Keystone), dashboard (Horizon).</div>
+    </div>
+
+    <!-- Government of India Cloud -->
+    <div class="card">
+      <div class="card-title">🇮🇳 Government of India Cloud (GI Cloud / MeghRaj)</div>
+      <div class="def-box">National cloud computing initiative by the Government of India. Also known as <strong>MeghRaj</strong>. Aims to leverage cloud computing for e-governance and citizen services.</div>
+      <ul class="kp">
+        <li>Launched under <strong>National e-Governance Plan (NeGP)</strong></li>
+        <li>Managed by <strong>NIC (National Informatics Centre)</strong> and MeitY</li>
+        <li>Provides IaaS, PaaS, and SaaS to government departments</li>
+        <li>Reduces duplication of ICT infrastructure across government</li>
+        <li><strong>Community cloud</strong> model — shared by government organizations</li>
+        <li>Data centers located across India (NIC data centers)</li>
+        <li>Compliant with Indian government data residency requirements</li>
+        <li>Enables e-governance apps: digital services to citizens</li>
+      </ul>
+      <div class="example-box"><strong>Benefits:</strong> Reduced IT cost for govt, faster deployment, shared infrastructure, data stays within India, standardized security policies across departments.</div>
+    </div>
+
+    <!-- IBM Cloud -->
+    <div class="card">
+      <div class="card-title">🔵 IBM Cloud</div>
+      <div class="def-box">IBM's comprehensive cloud platform. Formerly known as IBM Bluemix (until 2017). Offers IaaS, PaaS, and SaaS. Strong focus on <strong>AI (Watson), hybrid cloud, and enterprise workloads</strong>.</div>
+      <p style="font-size:12px;color:var(--muted);margin-bottom:6px;font-weight:600;">Key Offerings:</p>
+      <ul class="kp">
+        <li><strong>IBM Watson:</strong> AI and machine learning platform (NLP, computer vision, speech)</li>
+        <li><strong>IBM Cloud Foundry:</strong> PaaS for app development (open-source)</li>
+        <li><strong>IBM Cloud Kubernetes Service:</strong> Managed container orchestration</li>
+        <li><strong>IBM Cloud Object Storage:</strong> Scalable data storage</li>
+        <li><strong>IBM Cloud Bare Metal:</strong> Dedicated physical servers for high performance</li>
+        <li><strong>IBM Power Systems:</strong> High-performance compute for enterprise</li>
+        <li><strong>IBM Cloud Satellite:</strong> Extend IBM Cloud to any environment (on-prem, edge)</li>
+        <li><strong>Acquisition of Red Hat (2019):</strong> Strengthened hybrid cloud with OpenShift</li>
+      </ul>
+      <div class="callout"><strong>IBM Unique Strength:</strong> Hybrid cloud + AI. IBM focuses on helping enterprises modernize while maintaining existing investments. OpenShift (Red Hat) allows running apps across any cloud.</div>
+    </div>
+
+    <!-- Eucalyptus -->
+    <div class="card">
+      <div class="card-title">🌿 Eucalyptus</div>
+      <div class="def-box"><strong>Elastic Utility Computing Architecture for Linking Your Programs To Useful Systems.</strong> Open-source software for building AWS-compatible private and hybrid clouds on existing IT infrastructure.</div>
+      <p style="font-size:12px;color:var(--muted);margin-bottom:6px;font-weight:600;">Key Features:</p>
+      <ul class="kp">
+        <li><strong>AWS-compatible APIs:</strong> Drop-in compatible with EC2 and S3 — use same tools as AWS</li>
+        <li>Deploy on existing Linux hardware — no specialized hardware needed</li>
+        <li>Supports VMs (KVM, VMware, Xen)</li>
+        <li>Enables organizations to build their own private cloud</li>
+        <li>Acquired by <strong>HP</strong> in 2014</li>
+      </ul>
+      <p style="font-size:12px;color:var(--muted);margin:8px 0 4px;font-weight:600;">Eucalyptus Components:</p>
+      <ul class="kp">
+        <li><strong>CLC (Cloud Controller):</strong> Main entry point; manages the whole cloud, handles requests</li>
+        <li><strong>Walrus:</strong> S3-compatible object storage service</li>
+        <li><strong>CC (Cluster Controller):</strong> Manages node controllers in a cluster</li>
+        <li><strong>NC (Node Controller):</strong> Runs on each physical machine; manages VM instances</li>
+        <li><strong>SC (Storage Controller):</strong> Manages block storage (EBS-compatible)</li>
+      </ul>
+      <div class="example-box"><strong>Use case:</strong> An organization wants AWS-like cloud internally without paying AWS. Eucalyptus lets them build it on their own servers, compatible with AWS tools.</div>
+    </div>
+
+    <!-- COMPARISON TABLE -->
+    <div class="card full-width">
+      <div class="card-title">📊 Cloud Providers — Quick Comparison</div>
+      <table class="comp-table">
+        <tr><th>Provider</th><th>Primary Model</th><th>Launched</th><th>Unique Strength</th><th>Key Services</th></tr>
+        <tr><td><strong>Amazon AWS</strong></td><td>IaaS + PaaS + SaaS</td><td>2002/2006 EC2</td><td>Largest, most mature; widest service breadth</td><td>EC2, S3, Lambda, RDS, DynamoDB, CloudFront</td></tr>
+        <tr><td><strong>GoGrid</strong></td><td>IaaS</td><td>2008</td><td>Early EC2 competitor; hybrid cloud</td><td>Cloud servers, load balancers, storage</td></tr>
+        <tr><td><strong>Salesforce</strong></td><td>SaaS + PaaS (Force.com)</td><td>1999</td><td>CRM pioneer; SaaS model inventor</td><td>Sales/Service/Marketing Cloud, Einstein AI</td></tr>
+        <tr><td><strong>Force.com</strong></td><td>PaaS</td><td>2007</td><td>Rapid app dev on Salesforce infra; Apex/Visualforce</td><td>App development, AppExchange, Heroku</td></tr>
+        <tr><td><strong>Google App Engine</strong></td><td>PaaS (GCP)</td><td>2008</td><td>Serverless, auto-scaling; BigQuery/AI integration</td><td>App Engine, BigQuery, GKE, Cloud Functions</td></tr>
+        <tr><td><strong>Rackspace</strong></td><td>IaaS + Managed Cloud</td><td>1998</td><td>Managed cloud + Fanatical Support; OpenStack founder</td><td>Cloud servers, managed AWS/Azure/GCP, OpenStack</td></tr>
+        <tr><td><strong>Govt of India Cloud</strong></td><td>Community Cloud (IaaS/PaaS/SaaS)</td><td>~2014</td><td>Govt-focused; MeghRaj; data residency in India</td><td>e-Governance services, NIC data centers</td></tr>
+        <tr><td><strong>IBM Cloud</strong></td><td>IaaS + PaaS + SaaS</td><td>2011 (Bluemix 2014)</td><td>Hybrid cloud + Watson AI + enterprise focus</td><td>Watson, OpenShift (Red Hat), Cloud Foundry, Kubernetes</td></tr>
+        <tr><td><strong>Eucalyptus</strong></td><td>Private/Hybrid Cloud Software</td><td>2008</td><td>AWS-compatible open-source private cloud</td><td>EC2/S3 compatible APIs, Walrus, CLC, NC, CC, SC</td></tr>
+      </table>
+    </div>
+
+    <!-- ADDITIONAL IMPORTANT POINTS FOR UNIT 4 -->
+    <div class="card">
+      <div class="card-title">💡 Key Exam Points — Unit 4</div>
+      <ul class="kp">
+        <li><strong>AWS EC2 full form:</strong> Elastic Compute Cloud</li>
+        <li><strong>AMI:</strong> Amazon Machine Image — template to launch EC2 instances</li>
+        <li><strong>AWS SLA:</strong> 99.99% monthly uptime for multi-AZ. Service credits if not met.</li>
+        <li><strong>AZ (Availability Zone):</strong> Isolated data centers within an AWS region</li>
+        <li><strong>AWS Graviton4 + Inferentia2:</strong> Custom chips for better efficiency</li>
+        <li><strong>GoGrid acquired by Datapipe → Rackspace</strong></li>
+        <li><strong>Salesforce founded 1999</strong> by Marc Benioff — first SaaS company</li>
+        <li><strong>Force.com = Salesforce's PaaS</strong>. Uses Apex language + Visualforce UI</li>
+        <li><strong>Google App Engine supports:</strong> Python, Java, PHP, Go, Node.js, Ruby</li>
+        <li><strong>Rackspace co-founded OpenStack with NASA (2010)</strong></li>
+        <li><strong>GI Cloud = MeghRaj</strong> — managed by NIC, community cloud for Indian govt</li>
+        <li><strong>IBM acquired Red Hat (2019)</strong> for $34 billion — hybrid cloud via OpenShift</li>
+        <li><strong>Eucalyptus = AWS-compatible open-source private cloud</strong>. HP acquired 2014.</li>
+        <li><strong>Eucalyptus components:</strong> CLC, Walrus (S3), CC, NC, SC</li>
+        <li><strong>OpenStack components:</strong> Nova (compute), Swift/Cinder (storage), Neutron (network), Keystone (identity), Horizon (dashboard)</li>
+      </ul>
+    </div>
+
+    <!-- OPENSTACK -->
+    <div class="card">
+      <div class="card-title">🔓 OpenStack</div>
+      <div class="def-box">Free, open-source cloud computing platform. Co-founded by <strong>Rackspace + NASA (2010)</strong>. Used to build and manage public and private clouds. Used by enterprises, telcos, and governments.</div>
+      <table class="comp-table">
+        <tr><th>Component</th><th>Function</th></tr>
+        <tr><td><strong>Nova</strong></td><td>Compute — manages VMs and instances</td></tr>
+        <tr><td><strong>Swift</strong></td><td>Object Storage — like AWS S3</td></tr>
+        <tr><td><strong>Cinder</strong></td><td>Block Storage — like AWS EBS</td></tr>
+        <tr><td><strong>Neutron</strong></td><td>Networking — SDN, virtual networks</td></tr>
+        <tr><td><strong>Keystone</strong></td><td>Identity — authentication and authorization</td></tr>
+        <tr><td><strong>Horizon</strong></td><td>Dashboard — web-based GUI for OpenStack</td></tr>
+        <tr><td><strong>Glance</strong></td><td>Image Service — VM image repository</td></tr>
+        <tr><td><strong>Heat</strong></td><td>Orchestration — template-based infra deployment</td></tr>
+      </table>
+    </div>
+
+  </div>
+</div>
+
+<!-- FINAL CHEAT SHEET -->
+<div class="unit-section" style="margin-top:48px;">
+  <div class="unit-header" style="border-bottom-color:rgba(255,255,255,0.1)">
+    <span class="unit-badge" style="background:rgba(255,255,255,0.08);color:#fff;border-color:rgba(255,255,255,0.2)">⚡ RAPID FIRE</span>
+    <span class="unit-title">Critical Facts — Don't Miss These</span>
+  </div>
+  <div class="topics-grid">
+    <div class="card" style="border-left-color:#f59e0b">
+      <div class="card-title" style="color:var(--accent3)">🎯 Dates & Firsts</div>
+      <ul class="kp">
+        <li>Cloud concept: <strong>1960s — J.C.R. Licklider</strong> (ARPANet)</li>
+        <li>"Utility computing" idea: <strong>1961 — John McCarthy</strong> (MIT)</li>
+        <li>First SaaS: <strong>1999 — Salesforce</strong></li>
+        <li>AWS launched: <strong>2002</strong>; EC2: <strong>2006</strong></li>
+        <li>NIST cloud definition: formally published 2011 (SP 800-145)</li>
+        <li>Jericho Forum Cloud Cube Model: <strong>2009</strong></li>
+        <li>CSA founded: <strong>2008</strong></li>
+        <li>Fog Computing coined: <strong>Cisco</strong></li>
+        <li>OpenStack co-founded: <strong>Rackspace + NASA, 2010</strong></li>
+        <li>IBM acquired Red Hat: <strong>2019</strong></li>
+        <li>Eucalyptus acquired by HP: <strong>2014</strong></li>
+      </ul>
+    </div>
+    <div class="card" style="border-left-color:#00d4ff">
+      <div class="card-title" style="color:var(--u1)">🔑 Must-Know Acronyms</div>
+      <ul class="kp">
+        <li><strong>NIST:</strong> National Institute of Standards and Technology</li>
+        <li><strong>SPI:</strong> SaaS + PaaS + IaaS (service models)</li>
+        <li><strong>AMI:</strong> Amazon Machine Image</li>
+        <li><strong>AZ:</strong> Availability Zone (AWS)</li>
+        <li><strong>SDN:</strong> Software-Defined Networking</li>
+        <li><strong>NFV:</strong> Network Function Virtualization</li>
+        <li><strong>VMM:</strong> Virtual Machine Monitor = Hypervisor</li>
+        <li><strong>SAN:</strong> Storage Area Network (block-level)</li>
+        <li><strong>NAS:</strong> Network Attached Storage (file-level)</li>
+        <li><strong>LUN:</strong> Logical Unit Number (SAN)</li>
+        <li><strong>RAID:</strong> Redundant Array of Independent Disks</li>
+        <li><strong>IAM:</strong> Identity Access Management</li>
+        <li><strong>CSA:</strong> Cloud Security Alliance</li>
+        <li><strong>CCSK:</strong> Certificate of Cloud Security Knowledge</li>
+        <li><strong>MFA:</strong> Multi-Factor Authentication</li>
+        <li><strong>IDS:</strong> Intrusion Detection System</li>
+        <li><strong>DoS/DDoS:</strong> Denial of Service / Distributed DoS</li>
+      </ul>
+    </div>
+    <div class="card" style="border-left-color:#a78bfa">
+      <div class="card-title" style="color:var(--u2)">🧩 Who Uses What</div>
+      <ul class="kp">
+        <li><strong>Type 1 hypervisors:</strong> VMware ESXi, Hyper-V, KVM, Xen</li>
+        <li><strong>Type 2 hypervisors:</strong> VirtualBox, VMware Workstation, Parallels</li>
+        <li><strong>IaaS examples:</strong> AWS EC2, Azure VMs, GCP Compute Engine</li>
+        <li><strong>PaaS examples:</strong> Heroku, Google App Engine, Azure App Services, Force.com</li>
+        <li><strong>SaaS examples:</strong> Gmail, Salesforce, Dropbox, Zoom, Slack, Microsoft 365</li>
+        <li><strong>BPaaS providers:</strong> IBM, Wipro, Ovum, Cognizant</li>
+        <li><strong>App Virtualization vendors:</strong> Microsoft App-V, Citrix Virtual Apps, VMware ThinApp</li>
+        <li><strong>Private cloud use:</strong> Banking, medical, government</li>
+        <li><strong>Community cloud example:</strong> Universities + police sharing resources</li>
+        <li><strong>SOAP use:</strong> Banking, payment gateways (strict security)</li>
+        <li><strong>REST use:</strong> Social media APIs, weather APIs (fast, flexible)</li>
+      </ul>
+    </div>
+    <div class="card" style="border-left-color:#34d399">
+      <div class="card-title" style="color:var(--u3)">⚡ Trick Questions / Confusables</div>
+      <ul class="kp">
+        <li>IaaS = <em>lowest</em> level; SaaS = <em>highest</em> level in SPI stack</li>
+        <li>HaaS ≠ IaaS — HaaS is physical hardware rental; IaaS includes virtualization layer</li>
+        <li>Grid computing ≠ Cluster computing — grid is hetero, geographically dispersed; cluster is homo, local LAN</li>
+        <li>Fog computing = Edge computing (both terms used for same concept)</li>
+        <li>Hypervisor = VMM = Virtual Machine Monitor</li>
+        <li>NFV provides infrastructure <em>for</em> SDN (not the other way around)</li>
+        <li>Jericho Forum → became The Open Group → closed 2013</li>
+        <li>Cloud Cube Model = 4 dimensions (not 3, not 6)</li>
+        <li>GI Cloud = MeghRaj = managed by NIC (not ISRO, not MeitY directly)</li>
+        <li>Eucalyptus = AWS-compatible (EC2 + S3 API compatible) private cloud</li>
+        <li>Walrus in Eucalyptus = S3-compatible object storage</li>
+        <li>CLC = Cloud Controller (main entry point of Eucalyptus)</li>
+        <li>NIST has <em>5</em> characteristics + <em>3</em> service models + <em>4</em> deployment models</li>
+        <li>Web 1.0 era: <strong>1991–2004</strong></li>
+        <li>Static load balancing = no real-time comms; Dynamic = real-time comms needed</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+</div><!-- /container -->
+
+<div style="text-align:center;padding:32px;color:var(--muted);font-size:12px;border-top:1px solid var(--border);margin-top:40px;">
+  Cloud Computing — Complete Notes | All 4 Units | Made for Quiz Excellence
+</div>
+
+</body>
+</html>
